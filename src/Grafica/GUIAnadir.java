@@ -164,7 +164,7 @@ public class GUIAnadir extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No pueden haber campos vacios");
         }
         
-       else  if(Main.uni.buscarEstudiantePorCodigo(jtextCodigo.getText())!= null )
+       if(Main.uni.buscarEstudiantePorCodigo(jtextCodigo.getText())!= null )
        {
             JOptionPane.showMessageDialog(this, "ERROR: codigo de estudiante ya existe");
        }
