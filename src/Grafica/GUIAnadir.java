@@ -5,8 +5,7 @@
  */
 package Grafica;
 
-import Estructural.Universidad;
-import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -15,8 +14,6 @@ import javax.swing.JOptionPane;
  */
 public class GUIAnadir extends javax.swing.JFrame {
 
-    Universidad uni = new Universidad();
-    
     /**
      * Creates new form GUIAnadir
      */
@@ -152,36 +149,32 @@ public class GUIAnadir extends javax.swing.JFrame {
     private void btnAnadirEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirEstudianteActionPerformed
 
         // TODO add your handling code here:
-               
-       int celular = Integer.parseInt(jtextCelular.getText());
-        if(jtextNombre.getText().equals(null) || jtextNombre.getText().equals("") )
-        {
-            JOptionPane.showMessageDialog(this, "ERROR: Cedula vacia");
-        }
-        else if(jtextCelular.getText().equals(null) || jtextCelular.getText().equals("") )
-        {
-            JOptionPane.showMessageDialog(this, "ERROR: celular vacio");
-        }
-        else if(jtextCodigo.getText().equals(null) || jtextCodigo.getText().equals("") )
-        {
-            JOptionPane.showMessageDialog(this, "ERROR: celular vacio");
-        }
-        else if(jtextCorreo.getText().equals(null) || jtextCorreo.getText().equals("") )
-        {
-            JOptionPane.showMessageDialog(this, "ERROR: correo vacio");
+        
+        int celular = 0;
+        
+         try {
+            celular = Integer.parseInt(jtextCelular.getText());
+        } catch (Exception e) {
         }
         
-        else  if(uni.buscarEstudiantePorCodigo(jtextCodigo.getText())!= null )
+        if( jtextCedula.getText().equals("") || !jtextCelular.getText().matches("[0-9]*")
+                || jtextCodigo.getText().equals("") || jtextCorreo.getText().equals("") 
+                || jtextNombre.getText().equals(""))           
+        {
+            JOptionPane.showMessageDialog(null, "No pueden haber campos vacios");
+        }
+        
+       else  if(Main.uni.buscarEstudiantePorCodigo(jtextCodigo.getText())!= null )
        {
             JOptionPane.showMessageDialog(this, "ERROR: codigo de estudiante ya existe");
        }
        
-       else if(uni.existeCelular(celular) == true )
+       else if(Main.uni.existeCelular(celular) == true )
        {
             JOptionPane.showMessageDialog(this, "ERROR: celular de estudiante ya existe");
             
        }
-       else if(uni.existeCorreo(jtextCorreo.getText()) == true )
+       else if(Main.uni.existeCorreo(jtextCorreo.getText()) == true )
        {
             JOptionPane.showMessageDialog(this, "ERROR: correo de estudiante ya existe");
        }
@@ -192,7 +185,7 @@ public class GUIAnadir extends javax.swing.JFrame {
            String codigo = jtextCodigo.getText();
            String correo = jtextCorreo.getText();
            
-           uni.anadirEstudiante(nombre, cedula, codigo, correo, celular);
+           Main.uni.anadirEstudiante(nombre, cedula, codigo, correo, celular);
            
            jtextNombre.setText("");
            jtextCedula.setText("");

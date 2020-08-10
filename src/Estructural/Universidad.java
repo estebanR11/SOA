@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Universidad
 {
-    private ArrayList estudiantes;
+    private static ArrayList estudiantes;
     
     public Universidad()
     {
@@ -27,7 +27,7 @@ public class Universidad
     }
 
     public void setEstudiantes(ArrayList estudiantes) {
-        this.estudiantes = estudiantes;
+        Universidad.estudiantes = estudiantes;
     }
           
   
