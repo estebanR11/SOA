@@ -5,6 +5,8 @@
  */
 package Estructural;
 
+import java.util.Date;
+
 /**
  *
  * @author Cristian Devia, Esteban Rubio
@@ -13,14 +15,16 @@ public class Estudiante
 {
     private String nombre,codigo,correo;
     private int cedula,celular;
+    private Date fecha;
 
-    public Estudiante(String nombre, int cedula , String codigo, String correo, int celular) 
+    public Estudiante(String nombre, int cedula , String codigo, String correo, int celular, Date pFecha) 
     {
         this.nombre = nombre;
         this.codigo = codigo;
         this.correo = correo + "@estudiantes.edu";
         this.cedula = cedula;
         this.celular = celular;
+        fecha =pFecha;
     }
 
     public String getNombre() 
@@ -70,4 +74,15 @@ public class Estudiante
     {
         this.celular = celular;
     }   
+    
+    public Date getFecha()
+    {
+        return fecha;
+    }
+    
+    public void setFecha(Date fecha)
+    {
+        this.fecha =fecha;
+    }
+    
 }

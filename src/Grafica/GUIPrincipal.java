@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 public class GUIPrincipal extends javax.swing.JFrame 
 {
     
-    Universidad uni = new Universidad();
+   
      DefaultTableModel tabla;
     
 
@@ -148,38 +148,30 @@ public class GUIPrincipal extends javax.swing.JFrame
      * @param evt 
      */
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        // TODO add your handling code here:
-        //ArrayList estudiantes = uni.getEstudiantes();
         
         Estudiante actual;
-        if(uni.getEstudiantes().isEmpty())
+        
+        if(Main.uni.getEstudiantes().isEmpty())
         {
             JOptionPane.showMessageDialog(this, "La lista se encuentra vacia");
         }
         else
-        { 
-        // tabla.addRow(new Object[]{nombre, cedula, codigo, correo, celular});
-         for(int i=0;i<uni.getEstudiantes().size();i++)
-         {
-             actual = (Estudiante)uni.getEstudiantes().get(i);
-             String nombre =  actual.getNombre();
-             int cedula = actual.getCedula();
-             String codigo = actual.getCodigo();
-             String correo = actual.getCorreo();
-             int celular = actual.getCelular();
-             
-             if(uni.usuarioExiste(codigo) == true )
-                {
-                    JOptionPane.showMessageDialog(null, "El usuario ya existe");
-                    break;
-                }
-                else
-                {
-                    uni.anadirEstudiante(nombre, cedula, codigo, correo, celular);
-                    tabla.addRow(new Object[]{nombre, cedula, codigo, correo, celular});
-                    break;
-                }            
-         }           
+        {
+           for(int i = 0; i < Main.uni.getEstudiantes().size(); i++)
+           {
+               actual = (Estudiante) Main.uni.getEstudiantes().get(i);
+               String nombre = actual.getNombre();
+               int cedula = actual.getCedula();
+               String codigo = actual.getCodigo();
+               String correo = actual.getCorreo();
+               int celular = actual.getCelular();
+               
+               if(Main.uni.usuarioExiste(codigo) == true)
+               {
+                   tabla.addRow(new Object[]{nombre, cedula, codigo, correo, celular});
+               }
+               
+           }
         }
     }//GEN-LAST:event_btnListarActionPerformed
 

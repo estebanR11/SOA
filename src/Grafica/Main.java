@@ -5,12 +5,16 @@
  */
 package Grafica;
 
+import Estructural.Universidad;
+
 /**
  *
  * @author Cristian Devia
  */
 public class Main {
 
+    static Universidad uni = new Universidad();    
+    
     /**
      * @param args the command line arguments
      */

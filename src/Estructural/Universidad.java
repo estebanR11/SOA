@@ -6,6 +6,7 @@
 package Estructural;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Universidad
 {
-    private ArrayList estudiantes;
+    private static ArrayList estudiantes;
     
     public Universidad()
     {
@@ -27,14 +28,14 @@ public class Universidad
     }
 
     public void setEstudiantes(ArrayList estudiantes) {
-        this.estudiantes = estudiantes;
+        Universidad.estudiantes = estudiantes;
     }
           
   
-    public void anadirEstudiante(String pNombre, int pCedula, String pCodigo, String pCorreo, int pCelular )
+    public void anadirEstudiante(String pNombre, int pCedula, String pCodigo, String pCorreo, int pCelular, Date pFecha )
     {
         
-        Estudiante nuevo = new Estudiante(pNombre,pCedula,pCodigo,pCorreo,pCelular);
+        Estudiante nuevo = new Estudiante(pNombre,pCedula,pCodigo,pCorreo,pCelular, pFecha);
         estudiantes.add(nuevo);
         
     }
@@ -51,7 +52,7 @@ public class Universidad
         }
     }
     
-    public void actualizarPorCodigo(String pCodigo,String pNombre, int pCedula, String pCorreo, int pCelular )
+    public void actualizarPorCodigo(String pCodigo,String pNombre, int pCedula, String pCorreo, int pCelular, Date pFecha)
     {
         for(int i=0; i< estudiantes.size();i++)
         {
@@ -62,6 +63,7 @@ public class Universidad
               actual.setNombre(pNombre);
               actual.setCorreo(pCorreo);
               actual.setCelular(pCelular);
+              actual.setFecha(pFecha);
             }
         }
     }

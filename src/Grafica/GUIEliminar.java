@@ -5,6 +5,7 @@
  */
 package Grafica;
 
+import Estructural.Estudiante;
 import Estructural.Universidad;
 import javax.swing.JOptionPane;
 
@@ -14,7 +15,6 @@ import javax.swing.JOptionPane;
  */
 public class GUIEliminar extends javax.swing.JFrame {
 
-    Universidad uni = new Universidad();
     /**
      * Creates new form GUIEliminar
      */
@@ -99,14 +99,15 @@ public class GUIEliminar extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         
-        if(uni.buscarEstudiantePorCodigo(txtCodigoAEliminar.getText()).equals(null))
+        Estudiante buscado = Main.uni.buscarEstudiantePorCodigo(txtCodigoAEliminar.getText().toString());
+        if(buscado.equals(null) || txtCodigoAEliminar.getText().equals(""))
         {
-            JOptionPane.showMessageDialog(this, "ERROR: no existe estudiante con el codigo ingresado");
+            JOptionPane.showMessageDialog(this,"ERROR no existe el estudiante buscado" );
         }
         else
         {
-            uni.eliminarPorCodigo(txtCodigoAEliminar.getText());
-            JOptionPane.showMessageDialog(this, "Estudiante eliminado con exito");
+            Main.uni.eliminarPorCodigo(txtCodigoAEliminar.getText().toString());
+            JOptionPane.showMessageDialog(this,"Estudiante eliminado" );
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 

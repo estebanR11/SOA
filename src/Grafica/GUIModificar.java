@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
  */
 public class GUIModificar extends javax.swing.JFrame {
 
-    Universidad uni = new Universidad();
     /**
      * Creates new form GUIModificar
      */
@@ -44,6 +43,7 @@ public class GUIModificar extends javax.swing.JFrame {
         txtCorreoNuevo = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +71,13 @@ public class GUIModificar extends javax.swing.JFrame {
             }
         });
 
+        btnSalir.setText("Atras");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,7 +100,8 @@ public class GUIModificar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtCodigoBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtCodigoBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnBuscar)
@@ -105,8 +113,9 @@ public class GUIModificar extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(62, 62, 62)
                                 .addComponent(jButton1)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(58, 58, 58))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSalir)))))
+                .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,7 +143,8 @@ public class GUIModificar extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscar)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(btnSalir))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -143,13 +153,13 @@ public class GUIModificar extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        if(uni.buscarEstudiantePorCodigo(txtCodigoBuscado.getText()).equals(null) )
+       Estudiante buscado = Main.uni.buscarEstudiantePorCodigo(txtCodigoBuscado.getText().toString());
+        if(buscado.equals(null) || txtCodigoBuscado.getText().equals(""))
         {
-            JOptionPane.showMessageDialog(this, "ERROR: no existe estudiante con el codigo ingresado");
+            JOptionPane.showMessageDialog(this,"ERROR no existe el estudiante buscado" );
         }
         else
         {
-              Estudiante buscado = uni.buscarEstudiantePorCodigo(txtCodigoBuscado.getText());
               txtNombreNuevo.setText(buscado.getNombre());
               txtCedulaNueva.setText(String.valueOf(buscado.getCedula()));
               txtCelularNuevo.setText(String.valueOf(buscado.getCelular()));
@@ -169,8 +179,16 @@ public class GUIModificar extends javax.swing.JFrame {
         String correo = txtCorreoNuevo.getText();
         int celular = Integer.parseInt(txtCelularNuevo.getText());
         
-        uni.actualizarPorCodigo(codigo, nombre, cedula , correo, celular);
+        
+        Main.uni.actualizarPorCodigo(codigo, nombre, cedula , correo, celular);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        GUIPrincipal a = new GUIPrincipal();
+        a.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,6 +227,7 @@ public class GUIModificar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
