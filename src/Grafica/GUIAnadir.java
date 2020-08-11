@@ -187,7 +187,7 @@ public class GUIAnadir extends javax.swing.JFrame {
            String codigo = jtextCodigo.getText();
            String correo = jtextCorreo.getText();
            
-           Main.uni.anadirEstudiante(nombre, cedula, codigo, correo, celular);
+           Main.uni.anadirEstudiante(nombre, cedula, codigo, correo, celular,null);
            
            jtextNombre.setText("");
            jtextCedula.setText("");
